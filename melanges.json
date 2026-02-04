@@ -135,5 +135,41 @@
     "Boire tiède ou frais"
   ],
   "precautions": "Informations éducatives uniquement — demander un avis médical en cas de traitement antihypertenseur, grossesse ou pathologie cardiovasculaire."
+},
+{
+  "id": 17,
+  "nom": "Smoothie Pomme–Gingembre–Citron",
+  "objectifs": ["Manque d’appétit", "Digestion"],
+  "ingredients": [
+    "Pomme",
+    "Gingembre frais",
+    "Citron",
+    "Eau"
+  ],
+  "preparation": [
+    "Couper la pomme",
+    "Râper légèrement le gingembre",
+    "Mixer avec l’eau",
+    "Ajouter un filet de citron"
+  ],
+  "precautions": "Information éducative uniquement — éviter en cas de gastrite ou d’ulcère."
+},
+{
+  "id": 18,
+  "nom": "Infusion Concombre–Citron–Menthe",
+  "objectifs": ["Perte de poids", "Hydratation", "Détox"],
+  "ingredients": [
+    "Concombre",
+    "Citron",
+    "Feuilles de menthe",
+    "Eau"
+  ],
+  "preparation": [
+    "Couper le concombre en rondelles",
+    "Ajouter le citron et la menthe",
+    "Infuser dans de l’eau froide ou tiède pendant 15 minutes",
+    "Boire frais"
+  ],
+  "precautions": "Information éducative uniquement — ne remplace pas une prise en charge nutritionnelle ou médicale."
 }
 ]
