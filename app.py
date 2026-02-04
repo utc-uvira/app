@@ -34,6 +34,7 @@ def load_melanges():
         st.stop()
 
 melanges = load_melanges()
+st.write("NOMS DES OBJECTIFS DÉTECTÉS :", sorted({o for m in melanges for o in m.get("objectifs", [])}))
 
 # Objectifs uniques
 objectifs = sorted({obj for m in melanges for obj in m.get("objectifs", []) if isinstance(obj, str)})
