@@ -116,7 +116,7 @@ goal_labels = {c: n for c, n in goals}
 default_idx = goal_codes.index(goal_param) if goal_param in goal_codes else 0
 
 selected_goal = st.selectbox(
-    "Cette plateforme propose une information claire, éducative et préventive, basée sur des mélanges naturels de fruits. Sélectionnez votre problème de santé...",
+    "Cette plateforme propose une information claire, éducative et préventive, basée sur des mélanges naturels de fruits. Indiquez votre problème de santé...",
     goal_codes,
     format_func=lambda c: goal_labels.get(c, c),
     index=default_idx,
