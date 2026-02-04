@@ -1,4 +1,5 @@
 import json
+import unicodedata
 from pathlib import Path
 import streamlit as st
 
@@ -18,6 +19,24 @@ DISCLAIMER = (
     "ℹ️ **Informations éducatives et préventives — sans se substituer à un avis médical.** "
     "Les conseils en santé naturelle sont nombreux sur les réseaux sociaux, mais souvent dispersés."
 )
+
+# --------------------------------------------------
+# Utilitaire : normalisation des textes
+# --------------------------------------------------
+def normalize(text: str) -> str:
+    """
+    Normalise une chaîne pour comparaison robuste :
+    - minuscules
+    - suppression des accents
+    - apostrophes typographiques → simples
+    """
+    if not isinstance(text, str):
+        return ""
+    text = text.lower()
+    text = text.replace("’", "'")
+    text = unicodedata.normalize("NFD", text)
+    text = "".join(c for c in text if unicodedata.category(c) != "Mn")
+    return text.strip()
 
 # --------------------------------------------------
 # Chargement sécurisé du fichier JSON
@@ -48,7 +67,7 @@ def load_melanges():
 # --------------------------------------------------
 melanges = load_melanges()
 
-# 🔍 Diagnostics visibles (IMPORTANT)
+# Diagnostics visibles (à garder ou retirer plus tard)
 st.write("📦 Nombre de mélanges chargés :", len(melanges))
 st.write(
     "🆔 IDs chargés :",
@@ -56,14 +75,17 @@ st.write(
 )
 
 # --------------------------------------------------
-# Extraction des objectifs
+# Extraction et normalisation des objectifs
 # --------------------------------------------------
-objectifs = sorted({
-    obj
-    for m in melanges
-    for obj in m.get("objectifs", [])
-    if isinstance(obj, str)
-})
+# Map : objectif_normalisé -> libellé original
+objectif_map = {}
+
+for m in melanges:
+    for obj in m.get("objectifs", []):
+        if isinstance(obj, str):
+            objectif_map[normalize(obj)] = obj
+
+objectifs_affiches = sorted(objectif_map.values())
 
 # --------------------------------------------------
 # Interface
@@ -71,23 +93,28 @@ objectifs = sorted({
 st.title("UTC–Uvira | Santé & Bien-être")
 st.markdown(DISCLAIMER)
 
-if not objectifs:
+if not objectifs_affiches:
     st.error("❌ Aucun objectif détecté dans melanges.json.")
     st.stop()
 
-objectif = st.selectbox(
+objectif_label = st.selectbox(
     "Indiquez votre objectif santé :",
-    objectifs
+    objectifs_affiches
 )
 
+objectif_norm = normalize(objectif_label)
+
 # --------------------------------------------------
-# Filtrage des recommandations
+# Filtrage des recommandations (normalisé)
 # --------------------------------------------------
 recs = [
     m for m in melanges
-    if objectif in m.get("objectifs", [])
+    if any(normalize(o) == objectif_norm for o in m.get("objectifs", []))
 ]
 
+# --------------------------------------------------
+# Affichage des résultats
+# --------------------------------------------------
 st.subheader("Recommandations")
 
 if not recs:
