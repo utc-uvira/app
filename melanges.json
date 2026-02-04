@@ -112,22 +112,18 @@
     "precautions": "Déconseillé en cas de troubles gastriques."
   },
   {
-    "id": 15,
-    "nom": "Betterave Tomate Grenade",
-    "objectifs": ["Santé de la prostate"],
-    "ingredients": ["Betterave", "Tomate", "Grenade", "Un filet de citron"],
-    "preparation": ["Mixer tous les ingrédients", "Servir frais"],
-    "precautions": "Information éducative uniquement — ne remplace pas un avis médical."
-  },
-  {
+  "id": 15,
+  "nom": "Betterave Tomate Grenade",
+  "objectifs": ["Santé de la prostate"],
+  "ingredients": ["Betterave", "Tomate", "Grenade", "Un filet de citron"],
+  "preparation": ["Mixer tous les ingrédients", "Servir frais"],
+  "precautions": "Information éducative uniquement — ne remplace pas un avis médical."
+},
+{
   "id": 16,
   "nom": "Infusion Hibiscus–Citron",
   "objectifs": ["Hypertension", "Circulation"],
-  "ingredients": [
-    "Fleurs d’hibiscus séchées",
-    "Citron",
-    "Eau"
-  ],
+  "ingredients": ["Fleurs d’hibiscus séchées", "Citron", "Eau"],
   "preparation": [
     "Rincer les fleurs d’hibiscus",
     "Infuser dans de l’eau chaude pendant 10 minutes",
@@ -140,12 +136,7 @@
   "id": 17,
   "nom": "Smoothie Pomme–Gingembre–Citron",
   "objectifs": ["Manque d’appétit", "Digestion"],
-  "ingredients": [
-    "Pomme",
-    "Gingembre frais",
-    "Citron",
-    "Eau"
-  ],
+  "ingredients": ["Pomme", "Gingembre frais", "Citron", "Eau"],
   "preparation": [
     "Couper la pomme",
     "Râper légèrement le gingembre",
@@ -158,12 +149,7 @@
   "id": 18,
   "nom": "Infusion Concombre–Citron–Menthe",
   "objectifs": ["Perte de poids", "Hydratation", "Détox"],
-  "ingredients": [
-    "Concombre",
-    "Citron",
-    "Feuilles de menthe",
-    "Eau"
-  ],
+  "ingredients": ["Concombre", "Citron", "Feuilles de menthe", "Eau"],
   "preparation": [
     "Couper le concombre en rondelles",
     "Ajouter le citron et la menthe",
