@@ -1,556 +1,0 @@
-SQLite format 3   @                   
-                                                  .c
-� � �
-��M
-[
-�	
-� �� �2��                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      M%gindexidx_warn_mixwarningsCREATE INDEX idx_warn_mix ON warnings(mix_id)_+)yindexidx_mix_ing_mixmix_ingredientCREATE INDEX idx_mix_ing_mix ON mix_ingredient(mix_id)X/sindexidx_mix_goal_goalmix_goalCREATE INDEX idx_mix_goal_goal ON mix_goal(goal_id)�  --�stableingredient_aliasingredient_alias
-CREATE TABLE ingredient_alias (
-  id            INTEGER PRIMARY KEY,
-  ingredient_id INTEGER NOT NULL,
-  alias         TEXT NOT NULL,
-  UNIQUE (ingredient_id, alias),
-  FOREIGN KEY (ingredient_id) REFERENCES ingredients(id) ON DELETE CASCADE
-)?
-S- indexsqlite_autoindex_ingredient_alias_1ingredient_alias�!
- �tablewarningswarningsCREATE TABLE warnings (
-  id        INTEGER PRIMARY KEY,
-  mix_id    INTEGER NOT NULL,
-  level     TEXT CHECK (level IN ('info','prudence','alerte')) DEFAULT 'prudence',
-  message   TEXT NOT NULL,
-  FOREIGN KEY (mix_id) REFERENCES mixes(id) ON DELETE CASCADE
-)�i	 ))�
-tablemix_ingredientmix_ingredient
-CREATE TABLE mix_ingredient (
-  mix_id        INTEGER NOT NULL,
-  ingredient_id INTEGER NOT NULL,
-  quantity      TEXT,
-  role          TEXT,
-  PRIMARY KEY (mix_id, ingredient_id),
-  FOREIGN KEY (mix_id) REFERENCES mixes(id) ON DELETE CASCADE,
-  FOREIGN KEY (ingredient_id) REFERENCES ingredients(id) ON DELETE CASCADE
-);
-O) indexsqlite_autoindex_mix_ingredient_1mix_ingredient
-�\  �
-tablemix_goalmix_goalCREATE TABLE mix_goal (
-  mix_id    INTEGER NOT NULL,
-  goal_id   INTEGER NOT NULL,
-  relevance INTEGER DEFAULT 50 CHECK (relevance BETWEEN 0 AND 100),
-  PRIMARY KEY (mix_id, goal_id),
-  FOREIGN KEY (mix_id) REFERENCES mixes(id) ON DELETE CASCADE,
-  FOREIGN KEY (goal_id) REFERENCES health_goals(id) ON DELETE CASCADE
-)/C indexsqlite_autoindex_mix_goal_1mix_goal	�
- ##�]tableingredientsingredientsCREATE TABLE ingredients (
-  id          INTEGER PRIMARY KEY,
-  name        TEXT UNIQUE NOT NULL,
-  type        TEXT CHECK (type IN ('fruit','feuille','epice','legume','liquide','miel','autre')) DEFAULT 'autre',
-  notes       TEXT
-)5I# indexsqlite_autoindex_ingredients_1ingredients �C �etablemixesmixesCREATE TABLE mixes (
-  id            INTEGER PRIMARY KEY,
-  name          TEXT NOT NULL,
-  prep_type     TEXT NOT NULL CHECK (prep_type IN ('smoothie','jus','infusion','autre')),
-  description   TEXT,
-  instructions  TEXT,
-  share_slug    TEXT UNIQUE,
-  created_at    TEXT DEFAULT CURRENT_TIMESTAMP
-))= indexsqlite_autoindex_mixes_1mixes�9 %%�5tablehealth_goalshealth_goalsCREATE TABLE health_goals (
-  id          INTEGER PRIMARY KEY,
-  code        TEXT UNIQUE NOT NULL,
-  name        TEXT NOT NULL,
-  description TEXT
-)7K% indexsqlite_autoindex_health_goals_1health_goals       
-   
-
- ��
-�
-��y
-�
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               p
- [�SOMMEILGestion du stress & qualité du sommeilDétente et sommeil (information éducative, non médicale).u	 C�#OS_MUSCLESanté osseuse & musculaireCalcium, potassium, récupération (information éducative, non médicale).s G�CERVEAUSanté cérébrale & mémoireConcentration et clarté mentale (information éducative, non médicale).y  K�'ENERGIEÉnergie, vitalité & enduranceHydratation, énergie et performance (information éducative, non médicale).�
- s�IMMUNITEImmunité renforcée (prévention & récupération)Soutien des défenses naturelles (information éducative, non médicale).q I�DIGESTIONSanté digestive & intestinaleConfort digestif et transit (information éducative, non médicale).�
- O�QFOIESanté du foie & détox naturelleSoutien hygiène alimentaire et sensations de légèreté (information éducative, non médicale).� g�+CARDIOSanté cardiovasculaire (cœur & circulation)Hygiène de vie, circulation, énergie (information éducative, non médicale).z =�5MASCULINSanté masculine globaleVitalité, circulation, bien-être masculin (information éducative, non médicale).s 7�-PROSTATESanté de la prostateSoutien prévention et confort urinaire (information éducative, non médicale).
-   
-� ����������                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-SOMMEIL
-
-OS_MUSCLE	
-CERVEAU
-ENERGIE IMMUNITE
-DIGESTIONFOIE
-CARDIOMASCULIN
-	PROSTATE
-    � g�;
-�
-2�
-
-�
-_	�	K� ��R����p�[�V �                                                                                                                  �# i[
-a5Infusion de feuilles de corossol – GingembreinfusionRelaxation, sommeil, apaisement nerveuxinfusion-de-feuilles-de-corossol-gingembre2026-02-04T06:08:03Zp EO
-55Corossol – Citron – MieljusRéveil digestif, détox légèrecorossol-citron-miel2026-02-04T06:08:03Z� [_
-E5Corossol – Avocat – Lait d’amandesmoothieSatiété, bons lipides, énergie durablecorossol-avocat-lait-damande2026-02-04T06:08:03Z� Ki
-;5Corossol – Orange – CarottejusVitamine C, énergie, réduction de la fatiguecorossol-orange-carotte2026-02-04T06:08:03Z� Sa
-C5Corossol – Mangue – Citron vertsmoothieAntioxydants, immunité, santé de la peaucorossol-mangue-citron-vert2026-02-04T06:08:03Z�  O_
-?5Corossol – Ananas – GingembresmoothieAnti-ballonnements, digestion, fraîcheurcorossol-ananas-gingembre2026-02-04T06:08:03Z� SY
-C5Corossol – Banane – Eau de cocosmoothieÉnergie, hydratation, digestion doucecorossol-banane-eau-de-coco2026-02-04T06:08:03Zw GO
-75Camomille – Citron – MielinfusionStress, sommeil profond, détentecamomille-citron-miel2026-02-04T06:08:03Z� ec
-K5Banane – Épinards – Beurre d’arachidesmoothieMuscles, potassium, prévention des crampesbanane-pinards-beurre-darachide2026-02-04T06:08:03Z�4	 i�
-
-O5Sésame (tahini) – Dattes – Lait végétalsmoothieOs solides (apport), calcium (apport), récupération musculaires-same-tahini-dattes-lait-v-g-tal2026-02-04T06:08:03Z�% qc
-[5Curcuma – Gingembre – Poivre noir (eau tiède)autreNeuroprotection (hygiène), clarté mentalecurcuma-gingembre-poivre-noir-eau-ti-de2026-02-04T06:08:03Z� S_
-=5Noix – Banane – Lait d’amandesmoothieMémoire, concentration, énergie mentalenoix-banane-lait-damande2026-02-04T06:08:03Z� Uc
-?5Datte – Banane – Lait d’amandesmoothieÉnergie durable, récupération, vitalitédatte-banane-lait-damande2026-02-04T06:08:03Z�  US
-E5Betterave – Banane – Eau de cocosmoothieEndurance, hydratation, performancebetterave-banane-eau-de-coco2026-02-04T06:08:03Z�*
- mq
-U5Ail – Oignon – Gingembre (infusion légère)infusionAntibactérien, antiviral, protection saisonnièreail-oignon-gingembre-infusion-l-g-re2026-02-04T06:08:03Z� _s
-G5Gingembre – Curcuma – Citron – MielautreDéfenses naturelles, anti-inflammatoire (hygiène)gingembre-curcuma-citron-miel2026-02-04T06:08:03Zu
- IQ
-95Gingembre – Pomme – MenthejusDigestion, gaz, confort intestinalgingembre-pomme-menthe2026-02-04T06:08:03Z�
- Ky
-;5Aloe vera – Ananas – BananesmoothieMuqueuse intestinale (confort), transit, ballonnementsaloe-vera-ananas-banane2026-02-04T06:08:03Z�
-	 aM
-K5Aloe vera – Citron – Miel (eau tiède)autreDigestion, élimination, confortaloe-vera-citron-miel-eau-ti-de2026-02-04T06:08:03Z�	 M�
-=5Betterave – Carotte – CitronjusDétox hépatique (hygiène), nettoyage du sang (hygiène)betterave-carotte-citron2026-02-04T06:08:03Z|  OS
-?5Betterave – Pomme – GingembrejusCirculation, oxygénation, énergiebetterave-pomme-gingembre2026-02-04T06:08:03Z�	 Q�
-;5Ail – Huile d’olive – CitronautreCholestérol (hygiène), pression artérielle (hygiène), artèresail-huile-dolive-citron2026-02-04T06:08:03Z{ QM
-A5Betterave – Gingembre – CitronjusÉnergie, endurance, circulationbetterave-gingembre-citron2026-02-04T06:08:03Z�	 _O
-I5Ail – Gingembre – Citron (eau tiède)autreCirculation, vitalité, immunitéail-gingembre-citron-eau-ti-de2026-02-04T06:08:03Z� Sa
-=5Brocoli – Ail – Huile d’oliveautreSoutien antioxydant, hygiène métaboliquebrocoli-ail-huile-dolive2026-02-04T06:08:03Z�  ay
-K5Oignon – Ail – Gingembre (cuit léger)autreInflammation, circulation, confort urinaire / hormonesoignon-ail-gingembre-cuit-l-ger2026-02-04T06:08:03Z�	 Q�
-;5Tomate – Ail – Huile d’oliveautreProtection de la prostate, anti-inflammatoire, antioxydantstomate-ail-huile-dolive2026-02-04T06:08:03Z
-   � �Fe��
-�D
-b(�
-y
-;�
-Y�
-�
-�&���	�
-��                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        .ainfusion-de-feuilles-de-corossol-gingembre5corossol-citron-miel Ecorossol-avocat-lait-damande;corossol-orange-carotteCcorossol-mangue-citron-vert?corossol-ananas-gingembreCcorossol-banane-eau-de-coco7camomille-citron-miel#Kbanane-pinards-beurre-darachide%Os-same-tahini-dattes-lait-v-g-tal+[curcuma-gingembre-poivre-noir-eau-ti-de=noix-banane-lait-damande?datte-banane-lait-damande Ebetterave-banane-eau-de-coco(Uail-oignon-gingembre-infusion-l-g-re
-!Ggingembre-curcuma-citron-miel9gingembre-pomme-menthe
-;aloe-vera-ananas-banane
-#Kaloe-vera-citron-miel-eau-ti-de	=betterave-carotte-citron?betterave-pomme-gingembre ;ail-huile-dolive-citronAbetterave-gingembre-citron"Iail-gingembre-citron-eau-ti-de=brocoli-ail-huile-dolive#Koignon-ail-gingembre-cuit-l-ger;	tomate-ail-huile-dolive
-   "
-: ������p\G3!
-������nY>!
-�
-�
-�
-�
-�
-�
-�
-u
-c
-P
-:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              " 
-Épinardslegume! 
-Tomatelegume  
-Tahiniautre 
-Pommefruit #
-Poivre noirepice 
-Orangefruit 
-Oignonlegume 
-Noixautre
- 
-Mielmiel 
-Mentheepice 
-Manguefruit )
-Lait végétalliquide +
-Lait d’amandeliquide +
-Huile d’oliveautre 
-Gingembreepice  5
-Feuilles de corossolfeuille !
-Eau tièdeliquide #
-Eau de cocoliquide 
-Eauliquide 
-Dattefruit 
-Curcumaepice
- 
-Corossolfruit #
-Citron vertfruit
- 
-Citronfruit
- 
-Carottelegume	 
-Camomillefruit 
-Brocolilegume  3
-Beurre d’arachideautre 
-Betteravelegume 
-Bananefruit 
-Avocatfruit 
-Ananasfruit 
-Aloe verafruit 
-Aillegume
-   "; ���������~scVJ@8( ���������yi_TI;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-Épinards"
-Tomate!
-Tahini 	Pomme#Poivre noir
-Orange
-OignonNoixMiel
-Menthe
-Mangue)Lait végétal+Lait d’amande+Huile d’olive
-Gingembre5Feuilles de corossol!Eau tiède#Eau de coco Eau	Datte
-CurcumaCorossol
-#Citron vert
-Citron
-
-Carotte
-
-Camomille	
-Brocoli3Beurre d’arachide 
-Betterave
-Banane
-Avocat
-Ananas
-Aloe vera	Ail
-   � ��������������}tkbYPG>5,#�                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-U U  U  U U U U  U 
-U 	U 	U U U  U  U 
-U 
-U 
-U 
-
-U 
-	U 	U  U  U U U	U U	U		U
-    ����������������}ume]UME=5-%                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-           
- 	 	       
- 
- 
- 
-
- 	
- 	      	 				
-   W� ���������������wof]TKB90'��������������}tkbYPG>5,#
-�
-�
-�
-�
-�
-�
-�
-�
-�
-�
-�
-�
-�
-�
-�
-x
-o
-f
-]
-T
-K
-B
-9
-0
-'
-
-
-
-�                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     W
-
- V
-
- U
-
- T
-
- S
-
-
- R
-
-
- Q
-
- P
-
- O
-
-
- N
-
-
- M
-
- L
-
-
- K
-
- J
-
- I
-
-
- H
-
- G
-
- F
-
-
- E
-
- D
-
- C
-
-
- B
-
- A
-
- @
-
-
- ?
-
-	 >
-
-  =
-
-" <
-
- ;
-
- :
-
- 9
-
-  8
-
- 7
-
- 6
-
- 5
-
- 4
-
- 3
-
- 2
-
- 1
-
- 0
-
- /
-
- .
-
- -
-
- ,
-
- +
-
-
- *
-
-
- )
-
-
-(	
-
-
- '
-
- &
-
-
- %
-
- $
-
- #
-
-
- "
-
-
- !
-
-
-  
- 
- 
- 
-
-	 
-
-	 
-
-	
- 
-
-	 
-
-
- 
-
-
- 
-
- 
-
-  
-
-  
-
-  
-
-
- 
-
-	
-
- 
-
-
- 
-
- 
-
- 
-
-
- 
-
-
- 
-
-
-
-	
-
- 	
-
-	
-
-  
-
- 
-
-	
-
- 
-
-	
-
-		
-
-	
-
-!
-   W
-R �����������������qyiYaQIA91!)	����������������rjzbJZR:2B*"
-
-�
-�
-�
-�
-�
-�
-�
-�
-�
-�
-�
-�
-�
-�
-�
-�
-r
-z
-j
-R
-b
-Z                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             W V U T 
-S 
-R Q P 
-O 
-N M 
-L K J 
-I H G 
-F E D 
-C B A 
-@ 	?  > "= < ; :  9 8 7 6 5 4 3 2 1 0 / . - , 
-+ 
-* 
-)	
-( ' 
-& % $ 
-# 
-" 
-! 
-  
- 
- 	 	 	
- 	 
- 
-        
- 	 
-   
- 
- 
-	
- 		   	 					!   �    �                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-   � �                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-Soursop
-   � �                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         	
-Soursop
-   V ������������z\��tn���hb�����V                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-   
-		  
-
-
-	 				
-   W
-� ����������������������ztnhb\VPJD>82,& ���������������������~xrlf`ZTNHB<60*$ 
-�                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    WVUTSRQPONMLKJIHGFEDCBA@?>=<;:9876543210/.-,
-+
-*
-)
-('&%$
-#
-"
-!
- 
-
-				   
-
-
-	 				
-   N ���������������������~xrlf`ZTN                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-
-
-
-
-
-	
-		  		
-    � 2c
-��
-�
-'
-X	��Z � +\��� Q� �                                                                                                                                   �L �infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.�L �infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.�L �infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.�L �infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.�L �infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.�L �
-infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.�L �infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.�L
- �
-infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.^ �+
-prudenceAloe vera: utiliser avec modération; éviter en cas de sensibilité digestive.�L
- �
-infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.^
- �+	prudenceAloe vera: utiliser avec modération; éviter en cas de sensibilité digestive.�L	 �	infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.�L �infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.�L  � infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.�L �infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.�L �infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.�L �infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.�L �infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.�L �infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.�K 	�infoInformation éducative et préventive uniquement. Ne remplace pas un avis médical. En cas de traitement, grossesse/allaitement ou condition particulière, demander conseil à un professionnel.
-   
-A 1b
-��
-�
-&
-W	��A                                        
