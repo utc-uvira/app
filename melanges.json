@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "nom": "Smoothie Énergie Banane–Mangue",
+    "objectifs": ["Énergie"],
+    "ingredients": ["1 banane", "1/2 mangue", "200 ml d’eau"],
+    "preparation": ["Couper les fruits", "Mixer", "Servir frais"],
+    "precautions": "Limiter le sucre ajouté."
+  }
+]
