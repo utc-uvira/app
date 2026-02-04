@@ -10,8 +10,8 @@ DB_PATH = APP_DIR / "health_mixes.sqlite"
 SEED_SQL = APP_DIR / "seed_health_mixes.sql"
 
 DISCLAIMER = (
-    "ℹ️ **Information éducative et préventive uniquement.** "
-    "Cette application ne fournit pas de conseil médical."
+    "ℹ️ **Informations éducatives et préventives, sans se substituer à un avis médical.** "
+      "Elle fournit que des informations éducatives et préventives."
 )
 
 def ensure_db():
@@ -98,7 +98,7 @@ def fetch_recommendations(goal_code: str, limit: int = 3):
     return recs
 
 # UI
-st.title("🥤 Mélanges naturels – Santé préventive (MVP)")
+st.title("UTC–Uvira | Santé & Bien-être")
 st.markdown(DISCLAIMER)
 
 # Query params for share links
@@ -116,7 +116,7 @@ goal_labels = {c: n for c, n in goals}
 default_idx = goal_codes.index(goal_param) if goal_param in goal_codes else 0
 
 selected_goal = st.selectbox(
-    "Choisissez un objectif santé",
+    "L’information sur la santé naturelle est abondante mais dispersée. Cette app recommande des mélanges naturels de fruits. Choisissez votre objectif...",
     goal_codes,
     format_func=lambda c: goal_labels.get(c, c),
     index=default_idx,
