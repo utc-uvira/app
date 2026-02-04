@@ -11,7 +11,7 @@ SEED_SQL = APP_DIR / "seed_health_mixes.sql"
 
 DISCLAIMER = (
     "ℹ️ **Informations éducatives et préventives, sans se substituer à un avis médical.** "
-      "Elle fournit que des informations éducatives et préventives."
+      "L’information sur la santé naturelle est abondante, mais souvent dispersée."
 )
 
 def ensure_db():
@@ -116,7 +116,7 @@ goal_labels = {c: n for c, n in goals}
 default_idx = goal_codes.index(goal_param) if goal_param in goal_codes else 0
 
 selected_goal = st.selectbox(
-    "L’information sur la santé naturelle est abondante mais dispersée. Cette app recommande des mélanges naturels de fruits. Choisissez votre objectif...",
+    "Cette plateforme propose une information claire, éducative et préventive, basée sur des mélanges naturels de fruits. Choisissez votre objectif...",
     goal_codes,
     format_func=lambda c: goal_labels.get(c, c),
     index=default_idx,
