@@ -11,7 +11,7 @@ SEED_SQL = APP_DIR / "seed_health_mixes.sql"
 
 DISCLAIMER = (
     "ℹ️ **Informations éducatives et préventives, sans se substituer à un avis médical.** "
-      "L’information sur la santé naturelle est abondante, mais souvent dispersée."
+      "Les conseils en santé naturelle sont nombreux sur les réseaux sociaux, mais souvent dispersés."
 )
 
 def ensure_db():
