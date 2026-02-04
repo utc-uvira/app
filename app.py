@@ -68,11 +68,12 @@ def load_melanges():
 melanges = load_melanges()
 
 # Diagnostics visibles (à garder ou retirer plus tard)
-st.write("📦 Nombre de mélanges chargés :", len(melanges))
-st.write(
-    "🆔 IDs chargés :",
-    sorted([m.get("id") for m in melanges if isinstance(m, dict)])
-)
+# st.write("📦 Nombre de mélanges chargés :", len(melanges))
+# st.write(
+#   "🆔 IDs chargés :",
+#    sorted([m.get("id") for m in melanges if isinstance(m, dict)])
+# )
+
 
 # --------------------------------------------------
 # Extraction et normalisation des objectifs
