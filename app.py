@@ -2,6 +2,9 @@ import json
 from pathlib import Path
 import streamlit as st
 
+# --------------------------------------------------
+# Configuration générale
+# --------------------------------------------------
 st.set_page_config(
     page_title="UTC–Uvira | Santé & Bien-être",
     page_icon="🥤",
@@ -16,50 +19,83 @@ DISCLAIMER = (
     "Les conseils en santé naturelle sont nombreux sur les réseaux sociaux, mais souvent dispersés."
 )
 
-@st.cache_data
+# --------------------------------------------------
+# Chargement sécurisé du fichier JSON
+# --------------------------------------------------
+@st.cache_data(ttl=1)
 def load_melanges():
     if not DATA_FILE.exists():
-        st.error("melanges.json introuvable. Ajoute-le au même niveau que app.py dans GitHub.")
+        st.error("❌ melanges.json introuvable. Il doit être au même niveau que app.py.")
         st.stop()
+
     try:
         with open(DATA_FILE, "r", encoding="utf-8") as f:
             data = json.load(f)
+
         if not isinstance(data, list):
-            st.error("melanges.json doit contenir une LISTE d’objets (entre [ ... ]).")
+            st.error("❌ melanges.json doit contenir une LISTE d’objets [ {...}, {...} ].")
             st.stop()
+
         return data
+
     except json.JSONDecodeError as e:
-        st.error("melanges.json contient une erreur de format (JSON invalide).")
+        st.error("❌ Erreur de format JSON dans melanges.json.")
         st.exception(e)
         st.stop()
 
+# --------------------------------------------------
+# Données
+# --------------------------------------------------
 melanges = load_melanges()
-st.write("Nombre de mélanges chargés :", len(melanges))
-st.write("IDs chargés :", sorted([m.get("id") for m in melanges if isinstance(m, dict)]))
 
-# Objectifs uniques
-objectifs = sorted({obj for m in melanges for obj in m.get("objectifs", []) if isinstance(obj, str)})
+# 🔍 Diagnostics visibles (IMPORTANT)
+st.write("📦 Nombre de mélanges chargés :", len(melanges))
+st.write(
+    "🆔 IDs chargés :",
+    sorted([m.get("id") for m in melanges if isinstance(m, dict)])
+)
 
+# --------------------------------------------------
+# Extraction des objectifs
+# --------------------------------------------------
+objectifs = sorted({
+    obj
+    for m in melanges
+    for obj in m.get("objectifs", [])
+    if isinstance(obj, str)
+})
+
+# --------------------------------------------------
+# Interface
+# --------------------------------------------------
 st.title("UTC–Uvira | Santé & Bien-être")
 st.markdown(DISCLAIMER)
 
 if not objectifs:
-    st.error("Aucun objectif détecté dans melanges.json (champ 'objectifs').")
+    st.error("❌ Aucun objectif détecté dans melanges.json.")
     st.stop()
 
-objectif = st.selectbox("Indiquez votre objectif santé :", objectifs)
+objectif = st.selectbox(
+    "Indiquez votre objectif santé :",
+    objectifs
+)
 
-# Filtrer les mélanges
-recs = [m for m in melanges if objectif in m.get("objectifs", [])]
+# --------------------------------------------------
+# Filtrage des recommandations
+# --------------------------------------------------
+recs = [
+    m for m in melanges
+    if objectif in m.get("objectifs", [])
+]
 
 st.subheader("Recommandations")
+
 if not recs:
     st.info("Aucune recommandation disponible pour cet objectif pour le moment.")
 else:
     for r in recs:
         with st.container(border=True):
-            nom = r.get("nom", "Sans nom")
-            st.markdown(f"### {nom}")
+            st.markdown(f"### {r.get('nom', 'Sans nom')}")
 
             # Ingrédients
             ingredients = r.get("ingredients", [])
