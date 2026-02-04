@@ -15,14 +15,13 @@
     "preparation": ["Couper les ingrédients", "Mixer", "Servir frais"],
     "precautions": "À consommer frais."
   },
-
   {
     "id": 3,
     "nom": "Aloe Ananas Banane Eau de Coco",
     "objectifs": ["Digestion", "Hydratation", "Énergie"],
     "ingredients": ["Aloe vera", "Ananas", "Banane", "Eau de coco"],
     "preparation": ["Mixer tous les ingrédients"],
-    "precautions": "Utiliser uniquement le gel d’aloe comestible."
+    "precautions": "Utiliser uniquement du gel d’aloe comestible."
   },
   {
     "id": 4,
@@ -38,9 +37,8 @@
     "objectifs": ["Immunité", "Anti-inflammatoire"],
     "ingredients": ["Aloe vera", "Orange", "Carotte", "Gingembre"],
     "preparation": ["Mixer et filtrer si nécessaire"],
-    "precautions": "Gingembre à dose modérée."
+    "precautions": "Gingembre : à dose modérée."
   },
-
   {
     "id": 6,
     "nom": "Betterave Carotte Pomme",
@@ -65,7 +63,6 @@
     "preparation": ["Mixer"],
     "precautions": "Adapter avant l’effort."
   },
-
   {
     "id": 9,
     "nom": "Gingembre Citron Miel Eau Tiède",
@@ -80,9 +77,8 @@
     "objectifs": ["Anti-inflammatoire", "Articulations"],
     "ingredients": ["Gingembre", "Curcuma", "Poivre noir", "Lait d’amande"],
     "preparation": ["Chauffer doucement", "Mélanger"],
-    "precautions": "Curcuma déconseillé en cas de calculs biliaires."
+    "precautions": "Curcuma : déconseillé en cas de calculs biliaires."
   },
-
   {
     "id": 11,
     "nom": "Corossol Banane Eau de Coco",
@@ -97,9 +93,8 @@
     "objectifs": ["Sommeil", "Relaxation"],
     "ingredients": ["Feuilles de corossol", "Gingembre", "Eau"],
     "preparation": ["Infuser 10 minutes"],
-    "precautions": "Ne pas consommer quotidiennement sur longue durée."
+    "precautions": "Éviter un usage quotidien prolongé."
   },
-
   {
     "id": 13,
     "nom": "Oignon Miel (Sirop)",
@@ -115,5 +110,13 @@
     "ingredients": ["Ail", "Citron", "Eau tiède"],
     "preparation": ["Infuser légèrement"],
     "precautions": "Déconseillé en cas de troubles gastriques."
+  },
+  {
+    "id": 15,
+    "nom": "Betterave Tomate Grenade",
+    "objectifs": ["Santé de la prostate"],
+    "ingredients": ["Betterave", "Tomate", "Grenade", "Un filet de citron"],
+    "preparation": ["Mixer tous les ingrédients", "Servir frais"],
+    "precautions": "Information éducative uniquement — ne remplace pas un avis médical."
   }
 ]
