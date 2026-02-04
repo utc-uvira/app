@@ -6,5 +6,114 @@
     "ingredients": ["1 banane", "1/2 mangue", "200 ml d’eau"],
     "preparation": ["Couper les fruits", "Mixer", "Servir frais"],
     "precautions": "Limiter le sucre ajouté."
+  },
+  {
+    "id": 2,
+    "nom": "Smoothie Hydratation Pastèque–Concombre",
+    "objectifs": ["Hydratation"],
+    "ingredients": ["2 tasses de pastèque", "1/2 concombre", "menthe", "citron"],
+    "preparation": ["Couper les ingrédients", "Mixer", "Servir frais"],
+    "precautions": "À consommer frais."
+  },
+
+  {
+    "id": 3,
+    "nom": "Aloe Ananas Banane Eau de Coco",
+    "objectifs": ["Digestion", "Hydratation", "Énergie"],
+    "ingredients": ["Aloe vera", "Ananas", "Banane", "Eau de coco"],
+    "preparation": ["Mixer tous les ingrédients"],
+    "precautions": "Utiliser uniquement le gel d’aloe comestible."
+  },
+  {
+    "id": 4,
+    "nom": "Aloe Pomme Concombre Menthe",
+    "objectifs": ["Détox", "Digestion"],
+    "ingredients": ["Aloe vera", "Pomme", "Concombre", "Menthe"],
+    "preparation": ["Mixer", "Boire frais"],
+    "precautions": "Ne pas consommer en excès."
+  },
+  {
+    "id": 5,
+    "nom": "Aloe Orange Carotte Gingembre",
+    "objectifs": ["Immunité", "Anti-inflammatoire"],
+    "ingredients": ["Aloe vera", "Orange", "Carotte", "Gingembre"],
+    "preparation": ["Mixer et filtrer si nécessaire"],
+    "precautions": "Gingembre à dose modérée."
+  },
+
+  {
+    "id": 6,
+    "nom": "Betterave Carotte Pomme",
+    "objectifs": ["Énergie", "Santé du sang"],
+    "ingredients": ["Betterave", "Carotte", "Pomme"],
+    "preparation": ["Mixer", "Servir frais"],
+    "precautions": "Peut colorer les urines (effet normal)."
+  },
+  {
+    "id": 7,
+    "nom": "Betterave Orange Gingembre",
+    "objectifs": ["Immunité", "Circulation"],
+    "ingredients": ["Betterave", "Orange", "Gingembre"],
+    "preparation": ["Mixer"],
+    "precautions": "Éviter en cas de tension très basse."
+  },
+  {
+    "id": 8,
+    "nom": "Betterave Banane Lait d’Amande",
+    "objectifs": ["Endurance", "Récupération musculaire"],
+    "ingredients": ["Betterave", "Banane", "Lait d’amande"],
+    "preparation": ["Mixer"],
+    "precautions": "Adapter avant l’effort."
+  },
+
+  {
+    "id": 9,
+    "nom": "Gingembre Citron Miel Eau Tiède",
+    "objectifs": ["Digestion", "Immunité"],
+    "ingredients": ["Gingembre", "Citron", "Miel", "Eau tiède"],
+    "preparation": ["Infuser", "Boire tiède"],
+    "precautions": "Déconseillé en cas d’ulcère."
+  },
+  {
+    "id": 10,
+    "nom": "Gingembre Curcuma Lait d’Amande",
+    "objectifs": ["Anti-inflammatoire", "Articulations"],
+    "ingredients": ["Gingembre", "Curcuma", "Poivre noir", "Lait d’amande"],
+    "preparation": ["Chauffer doucement", "Mélanger"],
+    "precautions": "Curcuma déconseillé en cas de calculs biliaires."
+  },
+
+  {
+    "id": 11,
+    "nom": "Corossol Banane Eau de Coco",
+    "objectifs": ["Énergie", "Digestion"],
+    "ingredients": ["Corossol", "Banane", "Eau de coco"],
+    "preparation": ["Mixer"],
+    "precautions": "Consommer avec modération."
+  },
+  {
+    "id": 12,
+    "nom": "Infusion Feuilles de Corossol Gingembre",
+    "objectifs": ["Sommeil", "Relaxation"],
+    "ingredients": ["Feuilles de corossol", "Gingembre", "Eau"],
+    "preparation": ["Infuser 10 minutes"],
+    "precautions": "Ne pas consommer quotidiennement sur longue durée."
+  },
+
+  {
+    "id": 13,
+    "nom": "Oignon Miel (Sirop)",
+    "objectifs": ["Toux", "Immunité"],
+    "ingredients": ["Oignon", "Miel"],
+    "preparation": ["Macérer quelques heures"],
+    "precautions": "Utiliser en petite quantité."
+  },
+  {
+    "id": 14,
+    "nom": "Ail Citron Eau Tiède",
+    "objectifs": ["Immunité", "Circulation"],
+    "ingredients": ["Ail", "Citron", "Eau tiède"],
+    "preparation": ["Infuser légèrement"],
+    "precautions": "Déconseillé en cas de troubles gastriques."
   }
 ]
