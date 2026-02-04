@@ -149,6 +149,12 @@ else:
                     else:
                         st.info(msg)
 
-            share = f"{st.get_url()}?goal={selected_goal}&mix={r['slug']}"
+            base_url = st.secrets.get("APP_BASE_URL", "").rstrip("/")
+            if base_url:
+                share = f"{base_url}/?goal={selected_goal}&mix={r['slug']}"
+            else:
+                # fallback: relative link (still copyable)
+                share = f"?goal={selected_goal}&mix={r['slug']}"
+            
             st.code(share, language=None)
             st.caption("Copiez ce lien pour partager.")
