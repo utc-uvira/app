@@ -118,5 +118,22 @@
     "ingredients": ["Betterave", "Tomate", "Grenade", "Un filet de citron"],
     "preparation": ["Mixer tous les ingrédients", "Servir frais"],
     "precautions": "Information éducative uniquement — ne remplace pas un avis médical."
-  }
+  },
+  {
+  "id": 16,
+  "nom": "Infusion Hibiscus–Citron",
+  "objectifs": ["Hypertension", "Circulation"],
+  "ingredients": [
+    "Fleurs d’hibiscus séchées",
+    "Citron",
+    "Eau"
+  ],
+  "preparation": [
+    "Rincer les fleurs d’hibiscus",
+    "Infuser dans de l’eau chaude pendant 10 minutes",
+    "Filtrer et ajouter un filet de citron",
+    "Boire tiède ou frais"
+  ],
+  "precautions": "Informations éducatives uniquement — demander un avis médical en cas de traitement antihypertenseur, grossesse ou pathologie cardiovasculaire."
+}
 ]
