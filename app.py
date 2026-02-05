@@ -21,6 +21,35 @@ DISCLAIMER = (
 )
 
 # --------------------------------------------------
+# Compteur de visites (simple, anonyme)
+# --------------------------------------------------
+COUNTER_FILE = APP_DIR / "visits.json"
+
+def count_visit() -> int:
+    """
+    Incrémente un compteur global dans visits.json.
+    Compte 1 fois par session (piloté via st.session_state).
+    """
+    if COUNTER_FILE.exists():
+        try:
+            data = json.loads(COUNTER_FILE.read_text(encoding="utf-8"))
+            if not isinstance(data, dict):
+                data = {"visits": 0}
+        except Exception:
+            data = {"visits": 0}
+    else:
+        data = {"visits": 0}
+
+    visits = int(data.get("visits", 0)) + 1
+    data["visits"] = visits
+
+    COUNTER_FILE.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
+    return visits
+
+# --------------------------------------------------
 # Utilitaire : normalisation des textes
 # --------------------------------------------------
 def normalize(text: str) -> str:
@@ -55,7 +84,9 @@ def load_melanges():
             st.error("❌ melanges.json doit contenir une LISTE d’objets [ {...}, {...} ].")
             st.stop()
 
-        return data
+        # sécuriser les entrées
+        cleaned = [m for m in data if isinstance(m, dict)]
+        return cleaned
 
     except json.JSONDecodeError as e:
         st.error("❌ Erreur de format JSON dans melanges.json.")
@@ -63,24 +94,21 @@ def load_melanges():
         st.stop()
 
 # --------------------------------------------------
+# Comptage de la visite (1 fois par session)
+# --------------------------------------------------
+if "visits" not in st.session_state:
+    st.session_state.visits = count_visit()
+visits = st.session_state.visits
+
+# --------------------------------------------------
 # Données
 # --------------------------------------------------
 melanges = load_melanges()
 
-# Diagnostics visibles (à garder ou retirer plus tard)
-# st.write("📦 Nombre de mélanges chargés :", len(melanges))
-# st.write(
-#   "🆔 IDs chargés :",
-#    sorted([m.get("id") for m in melanges if isinstance(m, dict)])
-# )
-
-
 # --------------------------------------------------
 # Extraction et normalisation des objectifs
 # --------------------------------------------------
-# Map : objectif_normalisé -> libellé original
 objectif_map = {}
-
 for m in melanges:
     for obj in m.get("objectifs", []):
         if isinstance(obj, str):
@@ -93,6 +121,7 @@ objectifs_affiches = sorted(objectif_map.values())
 # --------------------------------------------------
 st.title("UTC–Uvira | Santé & Bien-être")
 st.markdown(DISCLAIMER)
+st.caption(f"👥 Visites totales de la plateforme : {visits}")
 
 if not objectifs_affiches:
     st.error("❌ Aucun objectif détecté dans melanges.json.")
@@ -151,5 +180,5 @@ else:
 
             # Précautions
             precautions = r.get("precautions", "")
-            if precautions:
+            if isinstance(precautions, str) and precautions.strip():
                 st.warning(precautions)
